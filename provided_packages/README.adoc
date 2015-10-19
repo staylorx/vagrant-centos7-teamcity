@@ -1,0 +1,6 @@
+= README
+:author: Steve Taylor <Steve.Taylor@taybiz.com>
+
+This is a folder for files that aren't mine -- or aren't wise --  to check in to source control.
+
+For instance, the Oracle JDKs require a license agreement. Teamcity and Artifactory it's best to get the latest and greatest. I use this folder for items I also don't have cached in Artifactory because they're huge... like the Oracle JDeveloper/SOA Suite 12c kit. Huge, that.

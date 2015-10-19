@@ -1,0 +1,34 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          teamcity
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: TeamCity
+# Description:       TeamCity
+### END INIT INFO
+
+# chkconfig: - 10 90
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# TEAMCITY_USER=teamcity
+TEAMCITY_HOME=/opt/TeamCity
+TEAMCITY_DATA_PATH=/var/TeamCity
+
+case $1 in
+    start)
+        $TEAMCITY_HOME/bin/runAll.sh start
+        ;;
+    stop)
+        $TEAMCITY_HOME/bin/runAll.sh stop
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
