@@ -70,5 +70,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "teamcity", type: "shell" do |s|
     s.path = "provisioning/shell/teamcity.sh"
   end
+
+  config.vm.provision "gradle", type: "shell" do |s|
+    s.path = "provisioning/shell/gradle.sh"
+  end
   
 end

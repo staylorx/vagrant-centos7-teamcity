@@ -14,6 +14,12 @@ package { 'curl':
   ensure => installed
 }
 
+package { 'unzip':
+  provider => 'yum',
+  name => 'unzip',
+  ensure => installed
+}
+
 package { 'java-openjdk8':
   provider => 'yum',
   name => 'java-1.8.0-openjdk-devel',
