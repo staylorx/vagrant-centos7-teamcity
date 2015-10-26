@@ -8,7 +8,7 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.60-2.b27.el7_1.x86_64
 
 TEAMCITY_TAR_FILE=/tmp/TeamCity-9.1.3.tar.gz
 rm -rf $TEAMCITY_TAR_FILE
-wget http://download.jetbrains.com/teamcity/TeamCity-9.1.3.tar.gz $TEAMCITY_TAR_FILE
+wget --progress=bar http://download.jetbrains.com/teamcity/TeamCity-9.1.3.tar.gz $TEAMCITY_TAR_FILE
 
 echo 'untarring teamcity...'
 rm -rf /opt/TeamCity

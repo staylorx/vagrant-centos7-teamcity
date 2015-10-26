@@ -25,7 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  # Teamcity rolls on 8111
   config.vm.network "forwarded_port", guest: 8111, host: 18111
 
   # Create a private network, which allows host-only access to the machine
@@ -36,10 +35,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"
+  
+  if !Vagrant.has_plugin?("vagrant-vbguest")
+    system('vagrant plugin install vagrant-vbguest')
+    raise('vagrant-vbguest installed. Run command again.')
+  end
 
+  # I use a proxy server/cache to reduce the network load at my place.
+  # Comment this whole bit out if you don't have a proxy server.
   if !Vagrant.has_plugin?("vagrant-proxyconf") 
-     system('vagrant plugin install vagrant-proxyconf')     
-     raise("vagrant-proxyconf installed. Run command again.")
+    system('vagrant plugin install vagrant-proxyconf')     
+    raise("vagrant-proxyconf installed. Run command again.")
   else
     config.proxy.http     = "http://192.168.1.250:3128"
     config.proxy.https    = "http://192.168.1.250:3128"
@@ -82,6 +88,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "gradle", type: "shell" do |s|
     s.path = "provisioning/shell/gradle.sh"
+  end
+
+  config.vm.provision "maven", type: "shell" do |s|
+    s.path = "provisioning/shell/maven.sh"
   end
   
 end

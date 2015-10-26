@@ -2,7 +2,7 @@
 
 #clear it out to reinstall
 rm -rf /tmp/gradle-2.7-bin.zip
-wget https://services.gradle.org/distributions/gradle-2.7-bin.zip -O /tmp/gradle-2.7-bin.zip
+wget --progress=bar https://services.gradle.org/distributions/gradle-2.7-bin.zip -O /tmp/gradle-2.7-bin.zip
 sudo unzip /tmp/gradle-2.7-bin.zip -d /opt
 rm -rf /tmp/gradle-2.7-bin.zip
 
