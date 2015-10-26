@@ -37,6 +37,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # your network.
   # config.vm.network "public_network"
 
+  if !Vagrant.has_plugin?("vagrant-proxyconf") 
+     system('vagrant plugin install vagrant-proxyconf')     
+     raise("vagrant-proxyconf installed. Run command again.")
+  else
+    config.proxy.http     = "http://192.168.1.250:3128"
+    config.proxy.https    = "http://192.168.1.250:3128"
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
+  
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third

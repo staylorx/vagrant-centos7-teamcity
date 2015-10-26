@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#First try was with GVM/sdkman. Way more hassle than it's worth.
-
 #clear it out to reinstall
 rm -rf /tmp/gradle-2.7-bin.zip
 wget https://services.gradle.org/distributions/gradle-2.7-bin.zip -O /tmp/gradle-2.7-bin.zip

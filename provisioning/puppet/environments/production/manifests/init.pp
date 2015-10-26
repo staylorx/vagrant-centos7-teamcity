@@ -14,6 +14,18 @@ package { 'curl':
   ensure => installed
 }
 
+package { 'ruby-augeas':
+  provider => 'yum',
+  name => ['ruby-augeas'],
+  ensure => installed
+}
+
+package { 'augeas':
+  provider => 'yum',
+  name => ['augeas'],
+  ensure => installed
+}
+
 package { 'unzip':
   provider => 'yum',
   name => 'unzip',
@@ -31,3 +43,29 @@ service { 'firewalld-stop':
   stop => 'true',
   enable => 'false'
 }
+
+augeas { 'etc-hosts4':
+  context => "/files/etc/hosts",
+  changes => [ 
+    "set *[ipaddr='127.0.0.1']/canonical teamcity.taybiz.local",
+    "ins alias after *[ipaddr='127.0.0.1']/canonical",
+    "set *[ipaddr='127.0.0.1']/alias[1] teamcity"
+  ],
+  onlyif => "match *[ipaddr='127.0.0.1']/alias size == 3"
+}
+
+augeas { 'etc-hosts6':
+  context => "/files/etc/hosts",
+  changes => [ 
+    "set *[ipaddr='::1']/canonical teamcity.taybiz.local",
+    "ins alias after *[ipaddr='::1']/canonical",
+    "set *[ipaddr='::1']/alias[1] teamcity"
+  ],
+  onlyif => "match *[ipaddr='::1']/alias size == 3"
+}
+
+#host { 'teamcity.taybiz.local':
+#    ip => '127.0.0.1',
+#    host_aliases => 'teamcity',
+#}
+
